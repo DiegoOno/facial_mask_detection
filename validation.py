@@ -8,6 +8,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 from tensorflow.keras.models import load_model
 import argparse
 import pandas as pd
+from sklearn.metrics import confusion_matrix
 
 ap = argparse.ArgumentParser()
   
@@ -25,11 +26,21 @@ testData = testGenerator.flow_from_directory('Dataset/test',
                                                  class_mode='categorical',
                                                  shuffle=False)
 
-print(testData.classes)
-
 model.summary()
 loss, acc = model.evaluate(testData, verbose=0)
 print('\n' + '=============================\n')
 print('Accuracy = ' + str(acc) + '\n')
 print('Loss = ' + str(loss) + '\n')
 print('=============================')
+
+predict = model.predict(testData)
+y_predict = []
+
+for x in range(0, len(predict)):
+  prediction_class = 0 if predict[x][0] > predict[x][1] else 1
+  y_predict.append(prediction_class)
+
+print(y_predict)
+
+conf_matrix = confusion_matrix(testData.classes, y_predict)
+print(conf_matrix)
