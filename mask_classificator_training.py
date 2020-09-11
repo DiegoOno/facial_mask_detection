@@ -98,7 +98,7 @@ def trainingCNN():
 
   # Training the Convolutional Neural Network
   history = model.fit(trainingData, 
-                      epochs = 300,
+                      epochs = 100,
                       validation_data = validationData, 
                       callbacks = callbacks_list)
 
@@ -108,7 +108,7 @@ def trainingCNN():
   plt.title('model accuracy')
   plt.ylabel('accuracy')
   plt.xlabel('epoch')
-  plt.legend(['train', 'test'], loc='upper left')
+  plt.legend(['train', 'validation'], loc='upper left')
   plt.show()
 
   # summarize history for loss
@@ -117,7 +117,7 @@ def trainingCNN():
   plt.title('model loss')
   plt.ylabel('loss')
   plt.xlabel('epoch')
-  plt.legend(['train', 'test'], loc='upper left')
+  plt.legend(['train', 'validation'], loc='upper left')
   plt.show()
   
 def main():

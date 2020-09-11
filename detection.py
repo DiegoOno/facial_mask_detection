@@ -30,9 +30,9 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # Detect faces in the image
 faces = frontal_face_cascade.detectMultiScale(
   gray,
-  scaleFactor=1.2,
+  scaleFactor=1.3,
   minNeighbors=5,
-  minSize=(30, 30),
+  minSize=(5, 5),
   flags=cv2.CASCADE_SCALE_IMAGE 
 )
 
@@ -69,4 +69,5 @@ if (len(faces) == 0):
   cv2.rectangle(img, (0, 0), (img.shape[0], img.shape[1]), color, 2)
 
 cv2.imshow("Faces found", img)
+cv2.imwrite('detected.png', img)
 cv2.waitKey(0)
